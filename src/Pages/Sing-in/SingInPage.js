@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesFormat";
+import axios from 'axios'
+import { urlAxios } from "../../Assets/URLaxios";
 import Input from "../../Components/Inputs";
 
 
@@ -19,10 +21,16 @@ export default function SingInPage() {
         console.log(form)
     }
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
 
-        
+        try {
+            const response = await axios.post(`${urlAxios}/sing_in`, form)
+            const token = response.data
+            console.log(token)
+        } catch (error) {
+            console.log(error.response.data)
+        }
     }
 
 

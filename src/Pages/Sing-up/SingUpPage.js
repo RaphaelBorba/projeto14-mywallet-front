@@ -30,7 +30,7 @@ export default function SingInPage() {
         if(form.password !== form.confirmPassword){
             alert('Senhas precisam ser iguais')
         }else{
-            console.log('certo')
+            
             try {
                 
                 delete form.confirmPassword
@@ -42,6 +42,7 @@ export default function SingInPage() {
                 navigate('/')
 
             } catch (error) {
+                
                 error.response.data.forEach(e => {
                     alert(e)
                 });
