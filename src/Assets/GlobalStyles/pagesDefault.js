@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const PagesDefault = styled.div`
 
     display: flex;
-    justify-content: ${props => (props.login)?'center':'start'};
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 400px;
@@ -35,13 +35,16 @@ export const PagesDefault = styled.div`
 
     nav{
         width: 90%;
+        margin: 30px 0;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        font-size: 30px;
     }
 
     h2{
-        font-size: 26px;
-        color: white;
         text-align: start;
-        margin: 30px 0;
+        
         
     }
 
