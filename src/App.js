@@ -1,9 +1,10 @@
 import { GlobalStyle } from './Assets/GlobalStyles/globalStyle'
+import {colors} from './Assets/GlobalStyles/colors'
 
 function App() {
   return (
     <>
-      <GlobalStyle/>
+      <GlobalStyle colors={colors}/>
       <main>
         
       </main>
