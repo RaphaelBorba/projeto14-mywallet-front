@@ -17,7 +17,7 @@ export const PagesDefault = styled.div`
         font-size: 32px;
         color: white;
         font-family: 'Saira Stencil One', cursive;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
 
     form{
