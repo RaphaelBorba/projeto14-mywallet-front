@@ -49,5 +49,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         background-color: ${props => props.colors.background};
+        font-family: 'Raleway', sans-serif;
     }
 `;
