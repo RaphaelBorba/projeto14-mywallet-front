@@ -1,13 +1,11 @@
-import { GlobalStyle } from './Assets/GlobalStyles/globalStyle'
+import { GlobalStyle } from './Assets/GlobalStyles/ResetCss'
 import {colors} from './Assets/GlobalStyles/colors'
 
 function App() {
   return (
     <>
       <GlobalStyle colors={colors}/>
-      <main>
-        
-      </main>
+      
     </>
   );
 }
