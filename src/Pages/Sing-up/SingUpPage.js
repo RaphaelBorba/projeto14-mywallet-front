@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PagesDefault } from "../../Assets/GlobalStyles/pagesFormat";
+import { PagesDefault } from "../../Assets/GlobalStyles/pagesDefault";
 import Input from "../../Components/Inputs";
 import axios from 'axios'
 import { urlAxios } from "../../Assets/URLaxios";
@@ -56,7 +56,7 @@ export default function SingInPage() {
 
     return (
 
-        <PagesDefault>
+        <PagesDefault login={true}>
             <p>MyWallet</p>
             <form onSubmit={handleSubmit} >
                 <Input placeH='Nome' type='text' handleForm={handleForm} id='name' />
@@ -66,7 +66,7 @@ export default function SingInPage() {
                 <Input type='submit' />
             </form>
 
-            <h1 onClick={() => navigate('/')} >Primeira vez? Cadastre-se!</h1>
+            <h1 onClick={() => navigate('/')} >Já tem uma conta? Entre agora!</h1>
         </PagesDefault>
     );
 }
