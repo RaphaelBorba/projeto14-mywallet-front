@@ -1,6 +1,7 @@
 import { GlobalStyle } from './Assets/GlobalStyles/ResetCss'
 import { colors } from './Assets/GlobalStyles/colors'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SingInPage from './Pages/Sing-in/SingInPage';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <GlobalStyle colors={colors} />
 
         <Routes>
-          <Route path='' element={} />
+          <Route path='/' element={<SingInPage/>} />
         </Routes>
       </BrowserRouter>
     </>
