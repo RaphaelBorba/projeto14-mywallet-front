@@ -1,17 +1,18 @@
-import e from "express";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesFormat";
 import Input from "../../Components/Inputs";
 
 
 export default function SingInPage() {
 
-    
+    function handleSubmit(e){
+        e.preventDefault()
+    }
 
     return (
 
         <PagesDefault>
             <p>MyWallet</p>
-            <form >
+            <form onSubmit={handleSubmit} >
                 <Input placeH='E-mail' type='text'/>
                 <Input placeH='Senha' type='password'/>
                 <Input placeH='asdasdaqwe' type='submit' />

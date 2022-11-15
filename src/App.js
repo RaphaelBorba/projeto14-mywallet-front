@@ -9,9 +9,9 @@ function App() {
       <BrowserRouter>
         <GlobalStyle colors={colors} />
 
-        <Routes>
+        {<Routes>
           <Route path='/' element={<SingInPage/>} />
-        </Routes>
+        </Routes>}
       </BrowserRouter>
     </>
   );
