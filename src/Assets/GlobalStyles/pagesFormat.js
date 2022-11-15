@@ -27,6 +27,11 @@ export const PagesDefault = styled.div`
         align-items: center;
     }
 
+    h1{
+        color: white;
+        margin-top: 20px;
+    }
+
     @media (max-width:400px) {
         &{
             width: 100%;

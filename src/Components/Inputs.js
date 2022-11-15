@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { colors } from "../Assets/GlobalStyles/colors";
 
 
-export default function Input({ placeH, type, handleForm}) {
+export default function Input({ placeH, type, handleForm, id}) {
 
     return (
 
-        <InputDefault placeholder={placeH} type={type} required id={type} name={type} onChange={handleForm}/>
+        <InputDefault placeholder={placeH} type={type} required id={id} name={id} onChange={handleForm}/>
     );
 }
 

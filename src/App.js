@@ -2,6 +2,7 @@ import { GlobalStyle } from './Assets/GlobalStyles/ResetCss'
 import { colors } from './Assets/GlobalStyles/colors'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SingInPage from './Pages/Sing-in/SingInPage';
+import SingUnPage from './Pages/Sing-up/SingUpPage';
 
 function App() {
   return (
@@ -9,9 +10,10 @@ function App() {
       <BrowserRouter>
         <GlobalStyle colors={colors} />
 
-        {<Routes>
-          <Route path='/' element={<SingInPage/>} />
-        </Routes>}
+        <Routes>
+          <Route path='/' element={<SingInPage />} />
+          <Route path='/sing_up' element={<SingUnPage />} />
+        </Routes>
       </BrowserRouter>
     </>
   );
