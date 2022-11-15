@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesFormat";
 import Input from "../../Components/Inputs";
+import axios from 'axios'
+import { urlAxios } from "../../Assets/URLaxios";
 
 
 export default function SingInPage() {
@@ -19,11 +21,33 @@ export default function SingInPage() {
     function handleForm(e) {
         const { name, value } = e.target
         setForm({ ...form, [name]: value })
-        console.log(form)
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+
+
+        if(form.password !== form.confirmPassword){
+            alert('Senhas precisam ser iguais')
+        }else{
+            console.log('certo')
+            try {
+                
+                delete form.confirmPassword
+                
+                await axios.post(`${urlAxios}/sing_up`, form)
+
+                alert('Registrado')
+                
+                navigate('/')
+
+            } catch (error) {
+                error.response.data.forEach(e => {
+                    alert(e)
+                });
+            }
+            
+        }
         
 
     }
