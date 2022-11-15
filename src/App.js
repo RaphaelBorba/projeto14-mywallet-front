@@ -1,9 +1,13 @@
-
+import { GlobalStyle } from './Assets/GlobalStyles/globalStyle'
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+      <GlobalStyle/>
+      <main>
+        
+      </main>
+    </>
   );
 }
 
