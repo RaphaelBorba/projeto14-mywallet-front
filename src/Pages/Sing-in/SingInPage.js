@@ -4,11 +4,14 @@ import { PagesDefault } from "../../Assets/GlobalStyles/pagesFormat";
 import axios from 'axios'
 import { urlAxios } from "../../Assets/URLaxios";
 import Input from "../../Components/Inputs";
+import { useAuth } from "../../provider/auth";
 
 
 export default function SingInPage() {
 
     const navigate = useNavigate()
+
+    const {user, setUser} = useAuth()
 
     const [form, setForm] = useState({
         email:'',
@@ -18,7 +21,6 @@ export default function SingInPage() {
     function handleForm(e) {
         const { name, value } = e.target
         setForm({ ...form, [name]: value })
-        console.log(form)
     }
 
     async function handleSubmit(e){
@@ -26,10 +28,14 @@ export default function SingInPage() {
 
         try {
             const response = await axios.post(`${urlAxios}/sing_in`, form)
-            const token = response.data
-            console.log(token)
+            
+            setUser({token:response.data}) 
+
+            console.log(user)
+
+            
         } catch (error) {
-            console.log(error.response.data)
+            alert(error.response.data.message)
         }
     }
 
