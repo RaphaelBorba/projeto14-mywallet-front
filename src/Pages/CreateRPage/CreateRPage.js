@@ -1,15 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesDefault";
 import { urlAxios } from "../../Assets/URLaxios";
 import Input from "../../Components/Inputs";
+import { useAuth } from "../../provider/auth";
 
 
 
 export default function CreateRPage() {
 
+    const navigate = useNavigate()
+
     const { type } = useParams()
+
+    const {user} = useAuth()
 
     const [form, setForm] = useState({
         type: '',
@@ -17,24 +22,33 @@ export default function CreateRPage() {
         description: '',
     })
 
-    /* const config = {
+    const config = {
         headers: {
             Authorization: `Bearer ${user.token}`
         }
-    } */
+    }
 
     function handleForm(e) {
         const { name, value } = e.target
         setForm({ ...form, [name]: value })
     }
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
 
         e.preventDefault()
         
         const recipe = {...form, type}
         
-        axios.post(`${urlAxios}/recipes`)
+        try {
+            await axios.post(`${urlAxios}/recipes`, recipe, config)
+            
+            navigate('/home')
+        } catch (error) {
+            console.log(error.response.data)
+        }
+        
+
+        
     }
 
     return (
