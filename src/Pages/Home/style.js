@@ -19,6 +19,7 @@ export const Buttons = styled.div`
     align-items: center;
 
     div{
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

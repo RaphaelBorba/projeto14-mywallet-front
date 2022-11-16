@@ -10,7 +10,7 @@ export const PagesDefault = styled.div`
     width: 400px;
     height: 800px;
     margin: auto;
-    border: 1px solid black;
+    
 
     
     p{
@@ -18,6 +18,7 @@ export const PagesDefault = styled.div`
         color: white;
         font-family: 'Saira Stencil One', cursive;
         margin-bottom: 30px;
+        text-align: center;
     }
 
     form{
@@ -40,12 +41,13 @@ export const PagesDefault = styled.div`
         display: flex;
         justify-content: space-between;
         font-size: 30px;
+        ion-icon{
+            cursor: pointer;
+        }
     }
 
     h2{
         text-align: start;
-        
-        
     }
 
     @media (max-width:400px) {
