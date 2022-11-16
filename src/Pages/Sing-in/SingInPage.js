@@ -11,7 +11,7 @@ export default function SingInPage() {
 
     const navigate = useNavigate()
 
-    const {user, setUser} = useAuth()
+    const {setUser} = useAuth()
 
     const [form, setForm] = useState({
         email:'',
@@ -47,7 +47,7 @@ export default function SingInPage() {
             <form onSubmit={handleSubmit} >
                 <Input placeH='E-mail' type='email' handleForm={handleForm} id='email' />
                 <Input placeH='Senha' type='password' handleForm={handleForm} id='password' />
-                <Input type='submit' />
+                <Input type='submit' text='Entrar' />
             </form>
 
             <h1 onClick={()=> navigate('/sing_up')} >Primeira vez? Cadastre-se!</h1>

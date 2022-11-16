@@ -2,24 +2,13 @@ import styled from "styled-components";
 import { colors } from "../Assets/GlobalStyles/colors";
 
 
-export default function Input({ placeH, type, handleForm, id}) {
+export default function Input({ placeH, type, handleForm, id, text, step}) {
 
     return (
 
-        <InputDefault placeholder={placeH} type={type} required id={id} name={id} onChange={handleForm}/>
+        <InputDefault placeholder={placeH} type={type} required id={id} name={id} onChange={handleForm} step={step} value={text} />
     );
 }
-
-
-/* <input
-    required
-    id="email"
-    name="email"
-    value={form.email}
-    onChange={handleForm}
-    type='text'
-    placeholder="email"
-/> */
 
 const InputDefault = styled.input`
 

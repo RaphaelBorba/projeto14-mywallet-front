@@ -1,6 +1,5 @@
 
 import { useNavigate } from "react-router-dom";
-import { colors } from "../../Assets/GlobalStyles/colors";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesDefault";
 import { useAuth } from "../../provider/auth";
 import { Board, Buttons } from "./style";
@@ -13,6 +12,12 @@ export default function HomePage() {
 
     const { user } = useAuth()
 
+    const config = {
+        headers: {
+            Authorization: `Bearer ${user.token}`
+        }
+    }
+
     console.log(user)
 
     function logout(){
@@ -22,11 +27,19 @@ export default function HomePage() {
         }
     }
 
+    try {
+        
+
+
+    } catch (error) {
+        
+    }
+
     return (
 
         <PagesDefault>
             {(!user.token) ?
-                <p>Você não está logado!! <br /> Clique <a href="/">aqui</a> para voltar ao login</p>
+                <p style={{'margin-top': '300px'}} >Você não está logado!! <br /> Clique <a href="/">aqui</a> para voltar ao login</p>
                 :
                 <>
                     <nav>
@@ -37,11 +50,11 @@ export default function HomePage() {
 
                     </Board>
                     <Buttons>
-                        <div>
+                        <div onClick={()=>navigate('/recipes/entrada')}>
                             <ion-icon name="add-circle-outline"></ion-icon>
                             <span>Nova <br /> entrada</span>
                         </div>
-                        <div>
+                        <div onClick={()=>navigate('/recipes/saida')}>
                             <ion-icon name="remove-circle-outline"></ion-icon>
                             <span>Nova <br /> saída</span>
                         </div>

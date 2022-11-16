@@ -63,7 +63,7 @@ export default function SingInPage() {
                 <Input placeH='E-mail' type='email' handleForm={handleForm} id='email' />
                 <Input placeH='Senha' type='password' handleForm={handleForm} id='password' />
                 <Input placeH='Confirme a senha' type='password' handleForm={handleForm} id='confirmPassword' />
-                <Input type='submit' />
+                <Input type='submit' text='Cadastrar' />
             </form>
 
             <h1 onClick={() => navigate('/')} >Já tem uma conta? Entre agora!</h1>

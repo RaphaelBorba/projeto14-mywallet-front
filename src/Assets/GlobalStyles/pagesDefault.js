@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const PagesDefault = styled.div`
 
     display: flex;
-    justify-content: center;
+    justify-content: ${props=>(props.login)?'center':'flex-start'};
     align-items: center;
     flex-direction: column;
     width: 400px;
