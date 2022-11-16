@@ -1,3 +1,5 @@
+
+import { useNavigate } from "react-router-dom";
 import { colors } from "../../Assets/GlobalStyles/colors";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesDefault";
 import { useAuth } from "../../provider/auth";
@@ -7,9 +9,18 @@ import { Board, Buttons } from "./style";
 
 export default function HomePage() {
 
+    const navigate = useNavigate()
+
     const { user } = useAuth()
 
     console.log(user)
+
+    function logout(){
+        const log = window.confirm('Deseja sair?')
+        if(log){
+            navigate('/')
+        }
+    }
 
     return (
 
@@ -19,8 +30,8 @@ export default function HomePage() {
                 :
                 <>
                     <nav>
-                        <h2>Olá, {'fulano'}</h2>
-                        <ion-icon name="log-out-outline"></ion-icon>
+                        <h2>Olá, {user.name}</h2>
+                        <ion-icon onClick={logout} name="log-out-outline"></ion-icon>
                     </nav>
                     <Board>
 

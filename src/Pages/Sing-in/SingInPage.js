@@ -29,9 +29,9 @@ export default function SingInPage() {
         try {
             const response = await axios.post(`${urlAxios}/sing_in`, form)
             
-            setUser({token:response.data}) 
+            setUser(response.data) 
 
-            console.log(user)
+            navigate('/home')
 
             
         } catch (error) {
