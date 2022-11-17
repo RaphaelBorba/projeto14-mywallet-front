@@ -44,7 +44,7 @@ export default function CreateRPage() {
             
             navigate('/home')
         } catch (error) {
-            console.log(error.response.data)
+            alert(error.response.data)
         }
         
 
