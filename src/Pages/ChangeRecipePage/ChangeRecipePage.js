@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesDefault";
 import { urlAxios } from "../../Assets/URLaxios";
 import Input from "../../Components/Inputs";
@@ -8,18 +8,18 @@ import { useAuth } from "../../provider/auth";
 
 
 
-export default function CreateRecipePage() {
+export default function ChangeRecipePage() {
 
     const navigate = useNavigate()
 
-    const { type } = useParams()
+    const { state } = useLocation()
+    const { type, description, value, _id } = state.recipe
 
-    const {user} = useAuth()
+    const { user } = useAuth()
 
     const [form, setForm] = useState({
-        type: '',
-        value: '',
-        description: '',
+        value: value,
+        description: description,
     })
 
     const config = {
@@ -33,36 +33,36 @@ export default function CreateRecipePage() {
         setForm({ ...form, [name]: value })
     }
 
-    async function handleSubmit(e){
+    async function handleSubmit(e) {
 
         e.preventDefault()
-        
-        const recipe = {...form, type}
-        
+
+        const recipe = { ...state.recipe, value: form.value, description: form.description }
+
         try {
-            await axios.post(`${urlAxios}/recipes`, recipe, config)
-            
+            await axios.put(`${urlAxios}/recipes/${_id}`, recipe, config)
+
             navigate('/home')
         } catch (error) {
             alert(error.response.data)
         }
-        
 
-        
+
+
     }
 
     return (
 
         <PagesDefault>
             <nav>
-                <h2>Nova {type}</h2>
+                <h2>Editar {type}</h2>
             </nav>
 
             <form onSubmit={handleSubmit}>
 
-            <Input placeH='Valor' type='number' handleForm={handleForm} id='value' step={'0.01'} />
-            <Input placeH='Descrição' type='text' handleForm={handleForm} id='description' />
-            <Input type='submit' text={`Salvar ${type}`} />
+                <Input placeH='Valor' type='number' handleForm={handleForm} id='value' step={'0.01'} text={form.value} />
+                <Input placeH='Descrição' type='text' handleForm={handleForm} id='description' text={form.description} />
+                <Input type='submit' text={`Atualizar ${type}`} />
 
             </form>
         </PagesDefault>

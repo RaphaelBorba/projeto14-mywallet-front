@@ -29,7 +29,7 @@ export default function HomePage() {
     function logOut() {
         
         const logout = window.confirm('Deseja sair?')
-        
+
         if (logout) {
 
             navigate('/')
@@ -42,7 +42,6 @@ export default function HomePage() {
                 const recipes = await axios.get(`${urlAxios}/recipes`, config)
                 setUserRecipes(recipes.data)
                 countAmount(recipes.data)
-                console.log(recipes.data)
 
             } catch (error) {
                 console.log(error)
@@ -88,6 +87,7 @@ export default function HomePage() {
 
                             userRecipes.map((e, i) => <Recipes
                                 setRenderRecipes={setRenderRecipes}
+                                recipe={e}
                                 renderRecipes={renderRecipes}
                                 key={i}
                                 value={e.value}
