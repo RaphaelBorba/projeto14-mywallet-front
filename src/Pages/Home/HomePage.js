@@ -29,9 +29,8 @@ export default function HomePage() {
     function logOut() {
         
         const logout = window.confirm('Deseja sair?')
+        
         if (logout) {
-
-            localStorage.removeItem("user")
 
             navigate('/')
         }

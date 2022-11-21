@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesDefault";
 import axios from 'axios'
@@ -17,36 +17,6 @@ export default function SingInPage() {
         email: '',
         password: ''
     })
-
-    // CHECK USER ACCOUNT IN LOCALSTORAGE
-    useEffect(() => {
-
-        async function logUser() {
-
-            const user = JSON.parse(localStorage.getItem("user"))
-
-            if (user) {
-                try {
-                    const response = await axios.post(`${urlAxios}/sing_in`, user)
-
-                    setUser(response.data)
-
-                    navigate('/home')
-
-
-                } catch (error) {
-
-                }
-            }
-        }
-
-        logUser()
-        console.log(form)
-
-        // eslint-disable-next-line
-    }, [])
-
-
 
     function handleForm(e) {
         const { name, value } = e.target
