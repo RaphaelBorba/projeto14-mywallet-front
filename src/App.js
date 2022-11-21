@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SingInPage from './Pages/Sing-in/SingInPage';
 import SingUnPage from './Pages/Sing-up/SingUpPage';
 import HomePage from './Pages/Home/HomePage';
-import CreateRPage from './Pages/CreateRPage/CreateRPage';
+import CreateRPage from './Pages/CreateRecipePage/CreateRecipePage';
 
 function App() {
   return (

@@ -32,6 +32,7 @@ export const PagesDefault = styled.div`
         color: white;
         margin-top: 20px;
         text-align: center;
+        cursor: pointer;
     }
 
     nav{

@@ -21,6 +21,7 @@ const InputDefault = styled.input`
     border-radius: 5px;
     padding-left: 15px;
     margin-block: 10px;
+    cursor: ${props => (props.type==='submit')?'pointer':'initial'};
     
     
 

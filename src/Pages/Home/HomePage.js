@@ -15,7 +15,8 @@ export default function HomePage() {
     const navigate = useNavigate()
 
     const [userRecipes, setUserRecipes] = useState([])
-    const [amount, setAmount]= useState(0)
+    const [amount, setAmount] = useState(0)
+    const [renderRecipes, setRenderRecipes] = useState(true)
 
     const { user } = useAuth()
 
@@ -25,9 +26,9 @@ export default function HomePage() {
         }
     }
 
-    function logout() {
-        const log = window.confirm('Deseja sair?')
-        if (log) {
+    function logOut() {
+        const logout = window.confirm('Deseja sair?')
+        if (logout) {
             navigate('/')
         }
     }
@@ -38,6 +39,7 @@ export default function HomePage() {
                 const recipes = await axios.get(`${urlAxios}/recipes`, config)
                 setUserRecipes(recipes.data)
                 countAmount(recipes.data)
+                console.log(recipes.data)
 
             } catch (error) {
                 console.log(error)
@@ -45,26 +47,27 @@ export default function HomePage() {
         }
         fetchData();
 
-        function countAmount(userRecipes){
+        function countAmount(userRecipes) {
             let val = 0
-            userRecipes.forEach((e)=>{
-                if(e.type==='entrada'){
+            userRecipes.forEach((e) => {
+                if (e.type === 'entrada') {
                     val += Number(e.value)
-                }else{
+                } else {
                     val -= Number(e.value)
                 }
             })
             setAmount(val)
         }
 
+
         // eslint-disable-next-line
-    }, []);
+    }, [renderRecipes]);
 
 
 
-    
 
-    
+
+
     return (
 
         <PagesDefault>
@@ -74,21 +77,29 @@ export default function HomePage() {
                 <>
                     <nav>
                         <h2>Olá, {user.name}</h2>
-                        <ion-icon onClick={logout} name="log-out-outline"></ion-icon>
+                        <ion-icon onClick={logOut} name="log-out-outline"></ion-icon>
                     </nav>
                     <Board amount={amount} userRecipes={userRecipes}>
-                        {(userRecipes.length===0) ? <h3>Não há registro de <br/> entrada ou saida</h3> 
-                        :
+                        {(userRecipes.length === 0) ? <h3>Não há registro de <br /> entrada ou saida</h3>
+                            :
 
-                        userRecipes.map((e,i)=> <Recipes key={i} value={e.value} date={e.date} description={e.description} type={e.type} />)
-                        
+                            userRecipes.map((e, i) => <Recipes
+                                setRenderRecipes={setRenderRecipes}
+                                renderRecipes={renderRecipes}
+                                key={i}
+                                value={e.value}
+                                _id={e._id}
+                                date={e.date}
+                                description={e.description}
+                                type={e.type} />)
+
                         }
-                        {(userRecipes.length===0) ? <></>
-                        :
-                        <div>
-                            <h4>Saldo</h4>
-                            <span>{amount.toFixed(2)}</span>
-                        </div>
+                        {(userRecipes.length === 0) ? <></>
+                            :
+                            <div>
+                                <h4>Saldo</h4>
+                                <span>{amount.toFixed(2)}</span>
+                            </div>
                         }
                     </Board>
                     <Buttons>
