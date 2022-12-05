@@ -18,27 +18,33 @@ export default function HomePage() {
     const [amount, setAmount] = useState(0)
     const [renderRecipes, setRenderRecipes] = useState(true)
 
-    const { user } = useAuth()
+    const { user, setUser } = useAuth()
 
     const config = {
         headers: {
-            Authorization: `Bearer ${user.token}`
+            Authorization: `Bearer ${(localStorage.getItem('user'))? JSON.parse(localStorage.getItem('user')).token :user.token}`
         }
     }
-
+    
     function logOut() {
         
         const logout = window.confirm('Deseja sair?')
-
+        
         if (logout) {
-
+            localStorage.removeItem('user')
             navigate('/')
         }
     }
+    
+    useEffect(() => {        
 
-    useEffect(() => {
+        takeUserLocalStorage()
+        
         async function fetchData() {
+            
+            
             try {
+                
                 const recipes = await axios.get(`${urlAxios}/recipes`, config)
                 setUserRecipes(recipes.data)
                 countAmount(recipes.data)
@@ -47,8 +53,7 @@ export default function HomePage() {
                 console.log(error)
             }
         }
-        fetchData();
-
+        
         function countAmount(userRecipes) {
             let val = 0
             userRecipes.forEach((e) => {
@@ -61,7 +66,16 @@ export default function HomePage() {
             setAmount(val)
         }
 
+        function takeUserLocalStorage(){
 
+            if(localStorage.getItem('user')){
+                setUser(JSON.parse(localStorage.getItem('user')))
+                return
+            }
+        }
+        
+        fetchData();
+        
         // eslint-disable-next-line
     }, [renderRecipes]);
 

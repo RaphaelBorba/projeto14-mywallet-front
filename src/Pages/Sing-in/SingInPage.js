@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PagesDefault } from "../../Assets/GlobalStyles/pagesDefault";
 import axios from 'axios'
@@ -13,10 +13,29 @@ export default function SingInPage() {
 
     const { setUser } = useAuth()
 
+    useEffect(()=>{
+
+        SingInLocalStorage()
+// eslint-disable-next-line
+    },[])
+
+
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
+
+    function SingInLocalStorage(){
+    
+        if(localStorage.getItem('user')){
+    
+            setUser(JSON.parse(localStorage.getItem('user')))
+    
+            navigate('/home')
+            
+        }
+    
+    }
 
     function handleForm(e) {
         const { name, value } = e.target
@@ -31,7 +50,7 @@ export default function SingInPage() {
 
             setUser(response.data)
 
-            const lsUser = JSON.stringify(form)
+            const lsUser = JSON.stringify(response.data)
             localStorage.setItem("user", lsUser)
 
             navigate('/home')
@@ -41,7 +60,6 @@ export default function SingInPage() {
             alert(error.response.data.message)
         }
     }
-
 
     return (
 
